@@ -49,7 +49,9 @@ function handleFileSelect(evt, isTypedArray) {
 				ret, header;
 			ret = Speex.decodeFile(data);
 			samples = ret[0];
+			console.log(`audio.js: samples:`, samples);
 			header = ret[1];
+			console.log(`audio.js: header:`, header);
 			sampleRate = header.rate;
 			addDownloadLink(filename+".wav", "#file_ogg",
 				samples, "audio/wav");
@@ -60,7 +62,8 @@ function handleFileSelect(evt, isTypedArray) {
 			Speex.util.play(samples, sampleRate);
 		} else if (ext == "wav") {
 			var data = e.target.result;
-			samples = Speex.encodeFile(data);
+      samples = Speex.encodeFile(data);
+      console.log(samples);
 			addDownloadLink(filename+".ogg", "#file_wav",
 				samples, "audio/ogg");
 
